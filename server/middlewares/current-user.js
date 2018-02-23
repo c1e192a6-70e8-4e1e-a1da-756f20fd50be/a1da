@@ -18,7 +18,6 @@ async function simpleAuth(req, res, next) {
             console.error(error);
         }
     }
-    console.log(req.session.userId);
     next();
 }
 module.exports = simpleAuth;
