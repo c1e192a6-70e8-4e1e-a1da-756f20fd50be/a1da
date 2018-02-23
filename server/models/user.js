@@ -1,20 +1,19 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const isEmail = require('validator/lib/isEmail');
-
+const uniqueValidator = require('mongoose-unique-validator');
 const User = new mongoose.Schema({
     email: {
         type: String,
         required: true,
         unique: true,
         trim: true,
-        validate: function(email) {
-            const instance = this;
-            if (!instance.isNew && instance.isModified('email'))
-                return Promise.reject('NOT_ALLOWED');
-            if (!isEmail(email)) return Promise.reject('INVALID_EMAIL');
-            return Promise.resolve();
-        },
+        validate: [
+            {
+                validator: isEmail,
+                msg: 'must be valid email',
+            },
+        ],
     },
     password: {
         type: String,
@@ -24,7 +23,7 @@ const User = new mongoose.Schema({
 
 User.method('checkPassword', checkPassword);
 User.pre('save', hashPasswordHook);
-
+User.plugin(uniqueValidator);
 /**
  * Hash password hook for User before save.
  * @param {Function} next
@@ -58,5 +57,4 @@ async function checkPassword(password) {
         });
     });
 }
-
 module.exports = mongoose.model('User', User);
