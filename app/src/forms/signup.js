@@ -20,8 +20,8 @@ export class SignUpFormComponent extends Component {
         return (
             <Paper style={{ width: 450 }}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Toolbar>
-                        <ToolbarTitle text="Sign Up" />
+                    <Toolbar style={{backgroundColor: '#118381'}}>
+                        <ToolbarTitle text="Sign Up" style={{color: 'white'}}/>
                     </Toolbar>
                     <div style={{ padding: '0 24px 12px' }}>
                         <div className="form-row">
