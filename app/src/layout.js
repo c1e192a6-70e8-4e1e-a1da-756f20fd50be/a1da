@@ -2,10 +2,8 @@ import './layout.css';
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 import logo from './assets/logo.png';
 import { MainContent } from './main-content-routes';
-import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { UserEmail } from './misc/user-email';
 import { Menu } from './misc/menu';
@@ -37,7 +35,7 @@ export class MainLayout extends React.Component {
                     <MainContent />
                 </div>
                 <div className="main-logo-watermartk">
-                    <img src={logo} />
+                    <img src={logo} alt="LYNK Logo"/>
                 </div>
                 <ToastContainer />
             </React.Fragment>

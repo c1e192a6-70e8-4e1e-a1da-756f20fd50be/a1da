@@ -4,6 +4,8 @@ const session = require('./session');
 const currentUser = require('./current-user');
 const apiRouter = require('../api');
 const errorHandler = require('./error-handler');
+const renderIndex = require('./render-index');
+const xPoweredBy = require('./x-powered-by')
 /**
  * Apply middlewares to express App
  *
@@ -11,6 +13,7 @@ const errorHandler = require('./error-handler');
  */
 function applyMiddlewares(app) {
     const middlewareStack = [
+        xPoweredBy,
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
         session,
@@ -18,6 +21,7 @@ function applyMiddlewares(app) {
         express.static('public'),
         apiRouter,
         errorHandler,
+        renderIndex,
     ];
 
     middlewareStack.forEach(middleware => {
